@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="keywords" content="cars, colors, similarity" />
+    <meta name="description" content="Сайт для поиска автомобиля определённого
+    цвета, или наиболее похожего к нему" />
+    <title>ColorsProject</title>
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}"/>
+    <link rel="shortcut icon" href="{% static 'core/img/icon.ico' %}" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap" rel="stylesheet">    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'core/js/menu.js' %}"></script>
+    {% block script %}
+    {% endblock %}
+    </head>
+<body>
+    <header id="header">
+        <div class="container">
+            <nav class="nav">
+                <img src="{% static 'core/img/logo.jpeg' %}" alt="car logo">
+                <ul class="menu">
+                    <li><a class="nav__link" href="{% url 'index' %}">Главная</a></li>
+                    <li><a class="nav__link" href="##">О проекте</a></li>
+                    <li><a class="nav__link enter" href="{% url 'signin' %}">Вход</a></li>
+                    <li><a class="nav__link" href="{% url 'signup' %}">Регистрация</a></li>         
+                </ul>
+            </nav>                    
+        </div>
+        <hr class="hr-shadow">
+    </header>
+    <main id="main">
+     {% block content %}
+     {% endblock %}    
+    </main>
+    <footer id="footer" class="footer">
+        <div class="container">
+            
+        </div>  
+    </footer>
+</body>
+</html>
