@@ -4,33 +4,26 @@
 <div class="container">
     <form class="form" id="form" action="{% url 'api_sign_up' %}" method="post">{% csrf_token %}
         <h1 class="form__title">Регистрация</h1>
-        <div id="message" class="message"></div>
+        <div id='message1' style="display: none;" class="message"></div>
+        <div id='message2' style="display: none;" class="message"></div>
+        <div id='message3' style="display: none;" class="message"></div>
+        <div id='message4' style="display: none;" class="message"></div>
+        {% for f in form %}
         <div class="form__group">
-            <input class="form__input" name="name" type="text" placeholder=" ">
-            <label class="form__label">Имя</label>
+            {{ f }}
+            <label class="form__label">{{ f.label }}</label>
         </div>
-        <div class="form__group">
-            <input class="form__input" name="login" type="text" placeholder=" ">
-            <label class="form__label">Логин</label>
-        </div>
-        <div class="form__group">
-            <input class="form__input" name="email" type="Email" placeholder=" ">
-            <label class="form__label">Email</label>
-        </div>
-        <div class="form__group">
-            <input class="form__input" id="password-input" name="password" type="password" placeholder=" ">
-            <label class="form__label">Пароль</label>
-            <label class="password__text">Показать пароль</label>
-            <input type="checkbox" id="password-checkbox" class="password__checkbox"><br>
-        </div>
-        <div class="form__group">
+        {% endfor %}
+<!--         <div class="form__group">
             <input class="form__input" id="password-input2" name="password2" type="password" placeholder=" ">
             <label class="form__label">Повторите пароль</label>
-            <label class="password__text">Показать пароль</label>
-            <input type="checkbox" id="password-checkbox2" class="password__checkbox"><br>
+        </div>  -->
+        <label class="password__text">Показать пароль</label>
+        <input type="checkbox" id="password-checkbox" class="password__checkbox"><br>
+        <input id="submit" type="submit" class="form__button" value="Войти">
         </div>
-        <input type="submit" class="form__button" value="Войти">
-        <script type="text/javascript" src="{% static 'core/js/show-psw-reg.js' %}"></script>
+        <script type="text/javascript" src="{% static 'core/js/show-psw.js' %}"></script>          
+        </script>
         <script type="text/javascript" src="{% static 'core/js/send-form.js' %}"></script>
         </form>
 </div>

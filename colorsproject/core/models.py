@@ -1,6 +1,7 @@
 from django.db import models
 import time
 import uuid
+import hashlib
 
 
 def key_generating():
@@ -11,10 +12,10 @@ def key_generating():
 
 
 class User(models.Model):
-    login = models.CharField(unique=True, max_length=20, blank=False)
-    password = models.CharField(max_length=64, blank=False)
-    name = models.CharField(max_length=64, blank=False)
-    email = models.CharField(unique=True, max_length=64, blank=False)
+    login = models.CharField(unique=True, max_length=20, blank=False, verbose_name='Логин')
+    password = models.CharField(max_length=64, blank=False, verbose_name='Пароль')
+    name = models.CharField(max_length=64, blank=False, verbose_name='Имя')
+    email = models.EmailField(unique=True, max_length=64, blank=False, verbose_name='Email')
     registration_date = models.BigIntegerField(default=int(time.time()))
     last_signin_date = models.BigIntegerField(blank=True, null=True)
 
@@ -23,7 +24,7 @@ class User(models.Model):
 
 
 class Session(models.Model):
-    user = models.ForeignKey('User', models.SET_NULL, related_name='session', null=True)
+    user = models.ForeignKey('User', on_delete=models.SET_NULL, related_name='session', null=True)
     key = models.CharField(max_length=64, default=key_generating)
     date = models.BigIntegerField(default=int(time.time()))
 
@@ -32,7 +33,7 @@ class Session(models.Model):
 
 
 class Favourite(models.Model):
-    user = models.ForeignKey('User', models.SET_NULL, related_name='favourite', null=True)
+    user = models.ForeignKey('User', on_delete=models.SET_NULL, related_name='favourite', null=True)
     car = models.ForeignKey('Car', models.SET_NULL, related_name='favourite', null=True)
     date = models.BigIntegerField(default=int(time.time()))
 
@@ -42,7 +43,7 @@ class Favourite(models.Model):
 
 class Brand(models.Model):
     name = models.CharField(max_length=30)
-    country = models.ForeignKey('Country', models.SET_NULL, related_name='brand', null=True)
+    country = models.ForeignKey('Country', on_delete=models.SET_NULL, related_name='brand', null=True)
     issue_date = models.DateField()
 
     class Meta:
@@ -50,8 +51,8 @@ class Brand(models.Model):
 
 
 class Car(models.Model):
-    color = models.ForeignKey('Color', models.SET_NULL, related_name='car', null=True)
-    brand = models.ForeignKey('Brand', models.SET_NULL, related_name='car', null=True)
+    color = models.ForeignKey('Color', on_delete=models.SET_NULL, related_name='car', null=True)
+    brand = models.ForeignKey('Brand', on_delete=models.SET_NULL, related_name='car', null=True)
     model = models.CharField(max_length=30)
 
     class Meta:
