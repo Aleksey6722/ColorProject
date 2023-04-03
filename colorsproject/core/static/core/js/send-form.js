@@ -1,5 +1,6 @@
-$("#form").submit(function(event){
+ $("#form").submit(function(event){
 	event.preventDefault(); 
+	$('.message').hide();
 	var post_url = $(this).attr("action"); 
 	var request_method = $(this).attr("method"); 
 	var form_data = $(this).serializeArray(); 
@@ -7,6 +8,7 @@ $("#form").submit(function(event){
 	$(form_data).each(function(index, obj){
 	    data[obj.name] = obj.value;
 	});
+	delete data['csrfmiddlewaretoken'];
 	$.ajaxSetup({
        headers: {
          "X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()
@@ -20,18 +22,21 @@ $("#form").submit(function(event){
 		data : JSON.stringify(data)
 	}).done(function(xhr){
 		console.log(xhr); 
-		// $("#message").html(xhr.email);
-		// $("#message").css("display", "block");
-		// window.location.href = "/";
-		if(post_url == "/signup") {
+		if(post_url == "/api/signup") {
 			window.location.href = "/signin";
+			console.log(xhr);
 		} else {
 			window.location.href = "/";
 		};		
 	}).fail(function (xhr) {
-		console.log(xhr);
-		// console.log(xhr.responseJSON.error);
-		$("#message").html(xhr.responseJSON.error);
-		$("#message").css("display", "block");
+		var i=0;
+		var data = xhr.responseJSON;
+		console.log(data);
+		for (var key in data) {
+			i++;
+			// console.log(data[key][0].message)
+			$(`#message${i}`).html(data[key][0].message);
+			$(`#message${i}`).show();
+		};
 	});
 });

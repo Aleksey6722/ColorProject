@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block script %}
+<link rel="stylesheet" href="{% static 'core/css/picker.css' %}"/>
+<script type="text/javascript" src="{% static 'core/js/picker.js' %}"></script>
+{% endblock %}
+{% block content %}
+<!-- <div class="pickshell">
+<div class="picker" data-hsv="180,60,78">
+<a href="#change" class="icon change"></a>
+<input type="text" class="change" name="change" value="" />
+<div class="board"><div class="choice"></div></div>
+<div class="rainbow"></div>
+</div>
+</div> -->
+<button style="margin: 50px, 100px, 100px, 100px;" id="picker" onclick="" >Show Color Picker</button>
+<script type="text/javascript">
+    $('#picker').colpick();
+</script>
+{% endblock %}

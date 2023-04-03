@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <form id="form" name="form" class="form" action="{% url 'api_sign_in' %}" method="post">{% csrf_token %}
+        <h1 class="form__title">Вход</h1>
+        <div id="message1" style="display: none;" class="message"></div>
+        {% for f in form %}
+        <div class="form__group">
+            {{ f }}
+            <label class="form__label">{{ f.label }}</label>
+        </div>
+        {% endfor %}
+        <label class="password__text"> Показать пароль</label>
+        <input type="checkbox" id="password-checkbox" class="password__checkbox"><br>
+        <input type="submit" name="submit" class="form__button" value="Войти" > 
+    </form>
+    <script type="text/javascript" src="{% static 'core/js/show-psw.js' %}"></script>
+    <script type="text/javascript" src="{% static 'core/js/send-form.js' %}"></script> 
+</div>
+{% endblock %}  
