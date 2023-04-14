@@ -1,21 +1,8 @@
-"""colorsproject URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+from . import settings
 from django.contrib import admin
+from django.conf.urls.static import static
 from django.urls import path, include
-from core.views import index, sign_in, sign_up, test
+from core.views import index, sign_in, sign_up, find_cars, Fav, sign_out, about
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -23,5 +10,11 @@ urlpatterns = [
     path("signin", sign_in, name="signin"),
     path("signup", sign_up, name="signup"),
     path("api/", include('core.urls')),
-    path("test", test),
+    path("find-cars", find_cars, name='find-cars'),
+    path("fav", Fav.as_view(), name="fav"),
+    path("signout", sign_out, name="signout"),
+    path("about", about, name="about"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

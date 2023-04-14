@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, JsonResponse
-from django.contrib.auth import authenticate, login
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+from django.views import View
 from .forms import RegForm, AuthForm
 from .models import User, Session, Car, Favourite
 from .serializers import UserSerializer, ColorSerializer, CarIDSerializer, FavoriteSerializer
@@ -14,8 +14,9 @@ import re
 import time
 
 
-def test(request):
+def find_cars(request):
     return render(request, 'core/picker.html')
+
 
 def index(request):
     return render(request, 'core/index.html')
@@ -31,8 +32,14 @@ def sign_up(request):
     return render(request, 'core/registration-form.html', context={'form': form})
 
 
-def find_car(request):
-    return HttpResponse('find_car')
+def sign_out(request):
+    response = HttpResponseRedirect('/')
+    response.delete_cookie('sessionid')
+    return response
+
+
+def about(request):
+    return render(request, 'core/about.html')
 
 
 class APISignUp(APIView):
@@ -77,17 +84,27 @@ class APIFindCars(APIView):
         data = Car.objects.all()
         a_list = []
         for car in data:
+            id = car.pk
             car_color = car.color.color_name
             model = car.model
             brand = car.brand.name
-            elem = model, brand, car_color, calculation(input_color, car_color)
+            url = car.image.url
+            country = car.brand.country.name
+            elem = id, model, brand, car_color, calculation(input_color, car_color), url, country
             a_list.append(elem)
 
-        sorted_list = sorted(a_list, key=lambda i: i[3])[:n]
+        sorted_list = sorted(a_list, key=lambda i: i[4])[:n]
 
         result = []
         for x in sorted_list:
-            car_info = {'model': x[0], 'brand': x[1], 'color': x[2]}
+            car_info = {
+                        'id': x[0],
+                        'model': x[1],
+                        'brand': x[2],
+                        'color': x[3],
+                        'url': x[5],
+                        'country': x[6]
+                        }
             result.append(car_info)
 
         return Response(result)
@@ -128,3 +145,13 @@ class APIFavorite(APIView):
         fav.delete()
         return Response({'success': 'Успешно удалено из избранного'})
 
+
+class Fav(View):
+    def get(self, request):
+        key = request.session.get('Authorization')
+        sess = Session.objects.filter(key=key).first()
+        if not sess:
+            return redirect("signin")
+        user = User.objects.filter(pk=sess.user.pk).first()
+        carset = Favourite.objects.filter(user=user)
+        return render(request, 'core/favourite.html', context={'carset': carset, 'user': user})

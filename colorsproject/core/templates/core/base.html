@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="{% static 'core/img/icon.ico' %}" type="image/x-icon"/>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap" rel="stylesheet">    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'core/js/jquery.cookies.js' %}"></script>
     <script type="text/javascript" src="{% static 'core/js/menu.js' %}"></script>
     {% block script %}
     {% endblock %}
@@ -22,17 +23,25 @@
                 <img src="{% static 'core/img/logo.jpeg' %}" alt="car logo">
                 <ul class="menu">
                     <li><a class="nav__link" href="{% url 'index' %}">Главная</a></li>
-                    <li><a class="nav__link" href="##">О проекте</a></li>
-                    <li><a class="nav__link enter" href="{% url 'signin' %}">Вход</a></li>
+                    <li><a class="nav__link" href="{% url 'about' %}">О проекте</a></li>
+                    <li><a class="nav__link" href="{% url 'fav' %}">Избранное</a></li>
+                    <li name='enter'><a class="nav__link enter" href="{% url 'signin' %}">Вход</a></li>
+                    <li name='exit' style="display: none;"><a class="nav__link enter" href="{% url 'signout' %}" >Выход</a></li>
                     <li><a class="nav__link" href="{% url 'signup' %}">Регистрация</a></li>         
                 </ul>
             </nav>                    
         </div>
         <hr class="hr-shadow">
+             <script type="text/javascript">
+                if ($.cookie('sessionid')) {
+                    $('[name="enter"]').hide();
+                    $('[name="exit"]').show();
+                }
+             </script> 
     </header>
     <main id="main">
      {% block content %}
-     {% endblock %}    
+     {% endblock %}   
     </main>
     <footer id="footer" class="footer">
         <div class="container">
