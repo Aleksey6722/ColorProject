@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+{% csrf_token %}
+<div class="container">
+	<h2>Избранное пользователя {{ user.name }}: </h2>
+	<div class="color_message" style="display: none;"></div>
+	<div class="car_container" id="car-container">
+		{% if not carset %}
+		<div class="fav_message">Нет ни одной машины в избранном</div>
+		{% endif %}
+		{% for i in carset %}
+		<div class="frame" id='{{ i.car.pk }}'>
+			<img class="image" src="{{ i.car.image.url }}.jpg" align="left">
+			<label>Цвет: <span>#{{ i.car.color.color_name }}</span></label><div class="colorbox" style="background-color: #{{i.car.color.color_name}};"></div><br>
+			<p>Марка: <span>{{ i.car.brand.name }}</span></p>
+			<p>Модель: <span>{{ i.car.model }}</span></p>
+			<p>Страна: <span>{{ i.car.brand.country.name }}</span></p>
+			<button id="{{ i.car.pk }}" class="form__button">Удалить</button>
+		</div>
+		{% endfor %}
+	</div>
+	<script type="text/javascript" src="{% static 'core/js/del-fav.js' %}"></script>
+</div>
+{% endblock %}

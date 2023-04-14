@@ -29,14 +29,12 @@
 			window.location.href = "/";
 		};		
 	}).fail(function (xhr) {
-		var i=0;
 		var data = xhr.responseJSON;
 		console.log(data);
 		for (var key in data) {
-			i++;
-			// console.log(data[key][0].message)
-			$(`#message${i}`).html(data[key][0].message);
-			$(`#message${i}`).show();
+			$(`<div class="message">${data[key][0].message}</div>`).insertAfter('h1');
+			// $(`#message${i}`).html(data[key][0].message);
+			// $(`#message${i}`).show();
 		};
 	});
 });

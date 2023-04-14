@@ -4,10 +4,6 @@
 <div class="container">
     <form class="form" id="form" action="{% url 'api_sign_up' %}" method="post">{% csrf_token %}
         <h1 class="form__title">Регистрация</h1>
-        <div id='message1' style="display: none;" class="message"></div>
-        <div id='message2' style="display: none;" class="message"></div>
-        <div id='message3' style="display: none;" class="message"></div>
-        <div id='message4' style="display: none;" class="message"></div>
         {% for f in form %}
         <div class="form__group">
             {{ f }}
@@ -20,7 +16,7 @@
         </div>  -->
         <label class="password__text">Показать пароль</label>
         <input type="checkbox" id="password-checkbox" class="password__checkbox"><br>
-        <input id="submit" type="submit" class="form__button" value="Войти">
+        <input id="submit" type="submit" class="form__button" value="Зарегистрироваться">
         </div>
         <script type="text/javascript" src="{% static 'core/js/show-psw.js' %}"></script>          
         </script>

@@ -54,7 +54,7 @@ class Car(models.Model):
     color = models.ForeignKey('Color', on_delete=models.SET_NULL, related_name='car', null=True)
     brand = models.ForeignKey('Brand', on_delete=models.SET_NULL, related_name='car', null=True)
     model = models.CharField(max_length=30)
-
+    image = models.ImageField(upload_to='cars/', null=True)
     class Meta:
         db_table = 'car'
 
