@@ -260,8 +260,8 @@ ul, li {
 	position: absolute;
 	top: 90px;
 	left: 515px;
-	max-width: 640px;
-	max-height: 490px;
+	width: 75%;
+	height: 85%;
 	overflow-y: auto;
 }
 
