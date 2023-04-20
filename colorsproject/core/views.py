@@ -93,6 +93,9 @@ class APIFindCars(APIView):
             elem = id, model, brand, car_color, calculation(input_color, car_color), url, country
             a_list.append(elem)
 
+        if n > len(a_list):
+            n=len(a_list)
+
         sorted_list = sorted(a_list, key=lambda i: i[4])[:n]
 
         result = []
