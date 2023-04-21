@@ -8,11 +8,12 @@ colpick Color Picker / colpick.com
 	top: 25px;
 	left: 15px;
 	font-size: 20px;
+	display: inline-block;
 }
 .colpick {
 	margin-top: 15px;
 	margin-bottom: 15px;
-	position: solute;
+	position: absolute;
     box-sizing:content-box;
 	width: 346px;
 	height: 180px;

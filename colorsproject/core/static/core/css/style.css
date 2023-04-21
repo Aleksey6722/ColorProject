@@ -257,11 +257,12 @@ ul, li {
 }
 
 .car_container {
-	position: absolute;
-	top: 90px;
-	left: 515px;
+	position: relative;
+	display: inline-block;
+	margin-left: 500px;
+	margin-top: -220px;
 	width: 75%;
-	height: 85%;
+	height: 80vh;
 	overflow-y: auto;
 }
 

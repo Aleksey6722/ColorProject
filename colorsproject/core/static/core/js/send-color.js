@@ -31,7 +31,7 @@ function sendColor () {
 			} else {
 				message=element[0]
 			}
-			$('#picker').append(`<div class="color_message" style="display: block;">${message}</div>`);
+			$('#div_error').append(`<div class="color_message" style="">${message}</div>`);
 		});		
 	});
 }

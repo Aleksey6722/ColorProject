@@ -14,9 +14,10 @@ $(".form__button").click(function() {
 		$(`[class="form__button"][id="${id}"]`).hide();
 		$(`[class="added__button"][id="${id}"]`).show();
 	}).fail(function (xhr) {
+		$('.color_message').remove();
 		var data = xhr.responseJSON;
 		console.log(data);
-		$('#picker').append(`<div class="color_message" style="display: block;">${data.error}</div>`);
+		$('#div_error').append(`<div class="color_message" style="">${data.error}</div>`);
 	})
 })
 
