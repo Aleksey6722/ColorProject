@@ -65,7 +65,7 @@ ul, li {
 }
 
 .menu li {
-	margin-right: 30px;
+	margin-right: 26px;
 }
 
 .nav__link {
@@ -118,7 +118,7 @@ ul, li {
 }
 
 .hr-shadow {
-	max-width: 100%;
+	width: 100%;
 	margin: 5pх 0px;
 	padding: 0;
 	height: 10px;
@@ -258,12 +258,13 @@ ul, li {
 
 .car_container {
 	position: relative;
+	top: 25px;
 	display: inline-block;
-	margin-left: 500px;
-	margin-top: -220px;
-	width: 75%;
+	left: 150px;
 	height: 80vh;
 	overflow-y: auto;
+	vertical-align: top;
+	width: 55%;
 }
 
 .color_message{
@@ -317,12 +318,44 @@ ul, li {
 .fav_message {
 	font-size: 25px;
 	text-align: center;
-	color: gray;
-	position: relative;
-	padding: 10px;
-	border: 1px solid gray;
+	color: red;
+	position: absolute;
+	margin-left: auto;
+    margin-right: auto;
+	top: 10px;
+	left: 0;
+	right: 0;
+	border: 1px solid red;
 	border-radius: 10px;
 	width: 350px;
-	height: 50px;
+	height: auto;
 
+}
+
+.auth_message {
+	font-size: 25px;
+	text-align: center;
+	color: white;
+	position: relative;
+	margin-left: auto;
+    margin-right: auto;
+	top: 10px;
+	left: 0;
+	right: 0;
+	border: 1px solid white;
+	border-radius: 10px;
+	width: 350px;
+	height: auto;
+
+}
+
+.wrap {
+	position: relative;
+	margin-left: auto;
+    margin-right: auto;
+	top: 10px;
+	left: 0;
+	right: 0;
+	width: 350px;
+	height: auto;
 }

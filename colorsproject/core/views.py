@@ -4,13 +4,10 @@ from django.views import View
 from .forms import RegForm, AuthForm
 from .models import User, Session, Car, Favourite
 from .serializers import UserSerializer, ColorSerializer, CarIDSerializer, FavoriteSerializer
-from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .colors import calculation
-import json
 import hashlib
-import re
 import time
 
 
@@ -154,7 +151,7 @@ class Fav(View):
         key = request.session.get('Authorization')
         sess = Session.objects.filter(key=key).first()
         if not sess:
-            return redirect("signin")
+            return render(request, 'core/fav_unauth.html')
         user = User.objects.filter(pk=sess.user.pk).first()
         carset = Favourite.objects.filter(user=user)
         return render(request, 'core/favourite.html', context={'carset': carset, 'user': user})

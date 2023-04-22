@@ -9,7 +9,9 @@ colpick Color Picker / colpick.com
 	left: 15px;
 	font-size: 20px;
 	display: inline-block;
+	vertical-align: top;
 }
+
 .colpick {
 	margin-top: 15px;
 	margin-bottom: 15px;
