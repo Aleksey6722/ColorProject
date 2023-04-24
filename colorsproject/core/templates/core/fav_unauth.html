@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+{% csrf_token %}
+<div class="container">
+	<div>
+		<div class="auth_message">Избранное доступно только зарегистрированным пользователям</div>
+		<div class="wrap" >
+			<a href="{% url 'signin' %}" style="text-decoration: none;">
+			<button style="width: 100%; margin-top: 10px; font-size: 20px;
+" class="form__button">Вход</button>
+			</a>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
