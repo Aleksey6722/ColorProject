@@ -632,6 +632,9 @@ COPY public.brand (id, name, issue_date, country_id) FROM stdin;
 --
 
 COPY public.car (id, model, brand_id, color_id, image) FROM stdin;
+34	Viper	26	34	cars/dodge-viper-157dd6
+37	Kuga	11	37	cars/ford-kuga-9f9059
+38	Raptor	11	38	cars/ford-raptor-db452d
 1	X5	1	1	cars/bmw-X5-d9010c
 2	Corolla	2	2	cars/toyota-corolla-fcde00
 3	Passat	3	3	cars/volkswagen-passat-0d6721
@@ -644,19 +647,15 @@ COPY public.car (id, model, brand_id, color_id, image) FROM stdin;
 10	Cruze	10	10	cars/chevrolet-cruze-1
 11	Mustang	11	11	cars/ford-mustang-8f3e9d
 12	S60 Cross country	12	12	cars/volvo-s60-cross-country-5b6376
-13	J7	13	13	cars/jac-j7-ddeff1
 14	Santa Fe	14	14	cars/hyundai-santa-fe-7ab9d8
 15	RX7	15	15	cars/mazda-rx7-fe64a2
 16	RX350	16	16	cars/lexus-rx350-62644e
-17	QX70	17	17	cars/infiniti-qx70-383457
 18	31105	18	18	cars/gaz-31105-3c6d7a
 19	Forester	19	19	cars/subaru-forester-28649a
-20	XF	20	20	cars/jaguar-xf-b7b8bc
 21	812	21	21	cars/ferrari-812-eec72c
 22	q8	22	22	cars/audi-q8-906d59
 23	RCZ	23	23	cars/peugeot-rcz-34393d
 24	Aventador	24	24	cars/lamborgini-aventador-b1317c
-25	Pajero	25	25	cars/mitsubishi-pajero-384395
 26	r8	22	26	cars/audi-r8-125879
 27	Rs6	22	27	cars/audi-rs6-329136
 28	M3	1	28	cars/bmw-m3-007970
@@ -665,39 +664,62 @@ COPY public.car (id, model, brand_id, color_id, image) FROM stdin;
 31	Camaro	10	31	cars/chevrolet-camaro-f8dc3a
 32	Challenger	26	32	cars/dodge-challenger-626970
 33	Charger	26	33	cars/dodge-charger-50bde6
-34	Viper	26	34	cars/dodge-viper-038cec
 35	Tipo	28	35	cars/fiat_tipo-ff001d
 36	Focus	11	36	cars/ford-focus-fdc204
-37	Kuga	11	37	cars/ford-kuga-aa985e
-38	Raptor	11	38	cars/ford-raptor-ca4631
-39	Accord	8	39	cars/honda-accord-8c5e6b
-40	CR-V	8	40	cars/honda-cr-v-9bb5d6
 41	Sonata	14	41	cars/hyndai-sonata-c8b05e
 42	Tukson	14	42	cars/hyndai-tukson-1f52eb
-43	Js6	13	43	cars/jac-js6-7c8596
-44	XF	20	44	cars/jaguar-xf-565a7d
-45	Grand-Cherokee	27	45	cars/jeep-grand-cherokee-e0e7f2
-46	Wrangler	27	46	cars/jeep-wrangler-01969c
 47	Cerato	6	47	cars/kia-cerato-e9e7e8
 48	Sorento	6	48	cars/kia-sorento-513132
-49	6	15	49	cars/mazda-6-d92957
 50	Axela	15	50	cars/mazda-axela-78828c
-51	Asx	25	51	cars/mitsubishi-asx-6da1b9
 52	Lancer	25	52	cars/mitsubishi-lancer-2a8236
-53	Outlander	25	53	cars/mitsubishi-outlander-aa604c
-54	Almera	4	54	cars/nissan-almera-753937
-55	Patrol	4	55	cars/nissan-patrol-6d6455
 56	Camry	2	56	cars/toyota-camry-d18e19
 57	Rav4	2	57	cars/toyota-rav4-7378a0
-58	Tiguan	3	58	cars/volkswagen-tiguan-3ca9a3
 59	Touareg	3	59	cars/volkswagen-touareg-5c483d
 60	V60	12	60	cars/volvo-v60-96aeba
-76	Nexia	31	77	cars/daewoo-nexia-b6b4b5
-77	Tahoe	10	78	cars/chevrolet-tahoe-695b6a
+39	Accord	8	39	cars/honda-accord-733334
+40	CR-V	8	40	cars/honda-cr-v-90a8c4
+17	QX70	17	17	cars/infiniti-qx70-453238
+13	J7	13	13	cars/jac-j7-e5f4f9
+43	Js6	13	43	cars/jac-js6-636363
+44	XF	20	44	cars/jaguar-xf-382d3d
+20	XF	20	20	cars/jaguar-xf-aaabb0
+45	Grand-Cherokee	27	45	cars/jeep-grand-cherokee-f0f3fa
+46	Wrangler	27	46	cars/jeep-wrangler-00757c
+49	6	15	49	cars/mazda-6-901b2b
+51	Asx	25	51	cars/mitsubishi-asx-4b80a0
+53	Outlander	25	53	cars/mitsubishi-outlander-984422
+25	Pajero	25	25	cars/mitsubishi-pajero-0558a8
+54	Almera	4	54	cars/nissan-almera-58171f
+55	Patrol	4	55	cars/nissan-patrol-59493a
+58	Tiguan	3	58	cars/volkswagen-tiguan-398f86
 78	412	30	79	cars/moskvish-412-d8d0b7
-79	Avenger	27	80	cars/jeep-avenger-ccc6ba
-80	XC90	12	81	cars/volvo-xc90-939fb5
 81	Eclipse	25	82	cars/mitsubishi-eclipse-39d10d
+77	Tahoe	10	78	cars/chevrolet-tahoe-4e495d
+76	Nexia	31	77	cars/daewoo-nexia-b0b2ad
+79	Avenger	27	80	cars/jeep-avenger-a99982
+80	XC90	12	81	cars/volvo-xc90-6d7685
+82	M4	1	83	cars/bmw-m4-56a429
+84	Captiva	10	85	cars/chevrolet-captiva-9a6a56
+85	Cobalt	10	86	cars/chevrolet-cobalt-ffa119
+86	Fiesta	11	87	cars/ford-fiesta-a9522e
+87	Mondeo	11	88	cars/ford-mondeo-9c143c
+88	Accent	14	89	cars/hyndai-accent-416e9f
+89	Elantra	14	90	cars/hyundai-elantra-758ac1
+90	Palisade	14	91	cars/hyundai-palisade-534749
+91	Cadenza	6	92	cars/kia-cadenza-405f96
+92	Optima	6	93	cars/kia-optima-fafafa
+93	GS300	16	94	cars/lexus-gs300-583b73
+94	LS430	16	95	cars/lexus-ls430-b2b4b3
+95	CLS-63	9	96	cars/mercedes-benz-cls-63-2bc0c6
+96	W124	9	97	cars/mercedes-benz-w124-9f2b34
+97	508	23	98	cars/peugeot-508-4a5265
+98	607	23	99	cars/peugeot-607-81a694
+99	Duster	7	100	cars/renault-duster-774b28
+100	Sandero	7	101	cars/renault-sandero-c8b161
+101	Impreza	19	102	cars/subaru-impreza-3b903d
+103	Tribeca	19	104	cars/subaru-tribeca-363b65
+102	Outback	19	103	cars/subaru-outback-937448
+83	X3	1	84	cars/bmw-x3-7f0103
 \.
 
 
@@ -706,6 +728,29 @@ COPY public.car (id, model, brand_id, color_id, image) FROM stdin;
 --
 
 COPY public.color (id, color_name) FROM stdin;
+53	984422
+83	56A429
+84	7F0103
+85	9A6A56
+86	FFA119
+87	A9522E
+88	9C143C
+89	416E9F
+90	758AC1
+91	534749
+92	405F96
+93	FAFAFA
+94	583B73
+95	B2B4B3
+96	2BC0C6
+97	9F2B34
+98	4A5265
+99	81A694
+100	774B28
+101	C8B161
+102	3B903D
+103	937448
+104	363B65
 1	D9010C
 2	FCDE00
 3	0D6721
@@ -717,16 +762,12 @@ COPY public.color (id, color_name) FROM stdin;
 9	814756
 10	7A1213
 11	8F3E9D
-25	384395
 12	5B6376
-13	DDEFF1
 14	7AB9D8
 15	FE64A2
 16	62644E
-17	383457
 18	3C6D7A
 19	28649A
-20	B7B8BC
 21	EEC72C
 22	906D59
 24	B1317C
@@ -739,39 +780,42 @@ COPY public.color (id, color_name) FROM stdin;
 31	F8DC3A
 32	626970
 33	50BDE6
-34	038CEC
 35	FF001D
 36	FDC204
-37	AA985E
-38	CA4631
-39	8C5E6B
-40	9BB5D6
 41	C8B05E
 42	1F52EB
-43	7C8596
-44	565A7D
-45	E0E7F2
-46	01969C
 47	E9E7E8
 48	513132
-49	D92957
 50	78828C
-51	6DA1B9
 52	2A8236
-53	AA604C
-54	753937
-55	6D6455
 56	D18E19
 57	7378A0
-58	3CA9A3
 59	5C483D
 60	96AEBA
-77	B6B4B5
-78	695B6A
-80	CCC6BA
-81	939FB5
 82	39D10D
 79	D8D0B7
+78	4E495D
+77	B0B2AD
+34	157DD6
+37	9F9059
+38	DB452D
+39	733334
+40	90A8C4
+17	453238
+13	E5F4F9
+43	636363
+44	382D3D
+20	AAABB0
+80	A99982
+45	F0F3FA
+46	00757C
+49	901B2B
+51	4B80A0
+25	0558A8
+54	58171F
+55	59493A
+58	398F86
+81	6D7685
 \.
 
 
@@ -875,6 +919,12 @@ kn6c554ouu7eeispt933e8mjum3l17mk	.eJwNzMENwyAMAMBd_K4qYxsH8uskiICj8khSFfJp1d2bG-
 djcgoowg21ruagb5omjgae0ojza48ndw	.eJwNzEsOwiAQANC7zNoYhjIfuvMkpAwQWbQ1ghuNd9d3gPeB22vez2d_b7OfB6xAVpqhLIiS2XJTtFID-RxZmAS9IlqoSgF5wcXYNbbiY1EhJzHDBdKoY_y31I8-0-x7HXPbHwlWZEXvo_N6jRSCIn9_C50mVw:1pmGTE:cwNXtnZ879xWmbHGJCE0JosmfiuYYbGKTb7Gz1z_Jmw	2023-04-25 22:03:48.995265+06
 cjssvrdkwr5c86i18svqzre9lwi7z0gn	.eJwNzDEOwyAMQNG7eK4qbMCYbD0JguCoDEmqQpZWvXsZv_T0v_C4xvN8t08e7TxgAYOyyaoxBikUrChXY0NZTbbF4KZahFlEZ6gJKJWJc1VBcrWSZ7hB6tr7vKV2tJFG27WPvL8SLMjTUUSyd8foPPnfHyjYJtg:1pmGUl:DuHw_rM3A84axZgOiFeu_UPFCrVlkNa6vE2RVtxjvpw	2023-04-25 22:05:23.618741+06
 nisc6fzdgu94mvbhbkkeas5vex0gypdn	.eJwNzMENwjAMAMBd_EYoTp3U7o9JIjc2Io-2iIQPiN3pAHdfuL3H43i1j4527LCAeMYaTUgt3Und12qs7BZDVnXOmiLrXCfFFYkkShVFFKvTmgIbXKB07_3cStvbKKNt3oduzwILZkaaMQW8npIC4u8PjzAn4Q:1pnHY5:xLsEHG3gKqFir7ilUr-WGPL4HvpwKgXroxSZxWUewSg	2023-04-28 17:25:01.558375+06
+kk679uapilyfi7rydmakcflzvy5go9f1	.eJwNzEEOAiEMAMC_9GxMEei2e_MlBGiJHHbXCHvR-HedB8wH7ud8HK_-zrMfO6zApo7MfCukXLJzRVE8Ni1SmtRGFsxxrItiXtg3Hxp6jhJFpYoGuEAaNsZ_S33vM82-2Zh5eyZYHfHNeVpCuIogI9L3B4-rJ-k:1pq4bp:ZPyk_0Nc-BZcL8uCL5zs-tTL0sfzRYhfrAoGPCCDMSc	2023-05-06 10:12:25.037496+06
+jgto2z90illolzjvjelk65gjpsef7uyu	.eJwNzEsOAiEMANC7dG0M5VPK7DwJqVAii5kxghuNd5f9y_vC7T0f56t_ZPbzgA2MRzE1iSevrlYfRY2JWDQ0YivisNWoJVaKTBRM8sa75Uuzyjbd4QJ56Bhry_3oM8--65iyPzNsuAp0kQNeE7tEyL8_NBgnFw:1pq4tg:9uJHQRsh77O0Ty8uu3peEwDIYgMhK3C7kFALvaYN-NI	2023-05-06 10:30:52.166851+06
+gmowdlnq0zp91c7n9v2jcmn18sgl7e54	.eJwNzEEOAiEMAMC_cDaG0tLC3nwJYSuNHHbXCHvR-HedB8zH3c75OF79XWc_drc4rSEAx5ibRUjGkniNVlHV30EFPDThJoZkqCacmY1M10pETIju4spoY_y30vc-y-xbG7Nuz-IW4BQAs3i4phyCpPD9AS0qJu0:1pq5NV:HHjs2-jj_aoEnahWHpEEdjqtj56ruGK8AwKPJkDawyg	2023-05-06 11:01:41.943712+06
+dwtc6q8xg2mmx7xt3giwp5ao4mxng8cd	.eJwNzDEOwyAMAMC_eK4qbBNsZ-tLEBCiMiSpClla9e_NesN94XGO5_FunzTascMMpBZQSVTUilBAv1hOF2Q1z5cIZxNjESZeiGitKVjKUyloqzq4Qey192uLbW8jjrbVPtL2ijBjUEI_GdI9OGInvz-NhSV3:1pq6zg:caLvkgoHxJv6NhZqn6QXbba271cSFT3QML2tvzr4qlc	2023-05-06 12:45:12.763495+06
+31m7qnmgeth44sfmzksnd4100lt7ks82	.eJwNzEEOwiAQBdC7zNoY-AwUuvMkhIFpZNHWCG403l3fAd6Hbq95P5_9XWY_D1oJUsV5GKPM4LJAUtTiFKqAJvgWWCwgBb6m5iUm2ZatVueliYl0oTx0jP-W-9Fnnn3XMcv-yLTaEGE5WOOuceFowvcHJCsnTQ:1pq72l:quMgl8RLa_OuaG65MglQgSvbKnAT9aLMFugwo0aod1A	2023-05-06 12:48:23.923663+06
+k49zpm2vuamotq9ej5v868aqk8eu92pa	.eJwNzDkKwzAQQNG7qA5htGvc5SRCzEJU2A6R0jjk7hH88vG_5vGZz_Pdrzb7eZjNRCHNIUWrzAEVgJR0Bd6KuBCQCEAbN8mLZrQFgAk4kCQBbuZm6pAx1q32o886-y5jtv1VzWZTcT5GyHj3rnhE9_sDt9wotg:1pqzPL:_HZHnak9GV6jBH6uxdbpVI42vnzERjA9RU_v4QTwf_A	2023-05-08 22:51:19.38138+06
 \.
 
 
@@ -928,6 +978,13 @@ COPY public.session (id, key, date, user_id) FROM stdin;
 62	5cdfc173117b6cbf81cde452b96765712811c4e85416313c60f6cd29d875079b	1681228839	9
 63	018f8ce9978b2738e6d037bc0a3b01feeb86688eb01e0718d626ade8124dd256	1681228839	9
 64	9e61c2d94ad5f4aeebcd8a8ed206aae86a528a7c3a1b144929c9a119dc3b508d	1681471381	9
+65	1e4611b4fe2d6f0f6adcdca2d72e75e0e35e258196bf5c9aa92512c443e2729d	1682134225	9
+66	8ed16ee3fb6d8ba11bd0930fdb9bf9cf6e4e185c7d0a783f34f0385959d9c9d4	1682134225	9
+67	041a0d9a464e3dd47ae0071ce5f682aa31fd7ec7d678665094043d9acf2e829b	1682134225	9
+68	ca2216559ef518f6786b5fa3cc0d1c7101e76e7f34f3cf76966f4fcba4446433	1682138630	9
+69	289618278789c72614d9ba827b8943c7273b979377323d222fea69ab5cc19f80	1682138630	9
+70	2bcb35200e4424a72b98ea3e2ee22e925d64b122ba25c9d5b89bf7fcc35bdb08	1682138630	9
+71	5ecf74651fdd49f00cfcffcf031ee2449cc00fadae75ec791800dc0d4ce6e0da	1682354331	9
 \.
 
 
@@ -937,8 +994,8 @@ COPY public.session (id, key, date, user_id) FROM stdin;
 
 COPY public."user" (id, login, password, name, email, registration_date, last_signin_date) FROM stdin;
 8	Carl	68e44633100f51328613e95607aa0147f5e4af715f58cfc2aa0e1c89e4afd83a	Carl	Carl@mail.ru	1680087833	\N
-9	mike	0fa539acd186da4dabc3b0d2fcf83ff1fb809f9032f017e8fca8ebce13e33968	mike	mike@mail.ru	1680088087	1681471501
 18	John	7ce6fad929dc25558a80b74f8b4bae54d556cf367eaee3ccd62e54138a7ab8fd	John	John@mail.ru	1680089387	\N
+9	mike	0fa539acd186da4dabc3b0d2fcf83ff1fb809f9032f017e8fca8ebce13e33968	mike	mike@mail.ru	1680088087	1682355079
 28	Frank	08a04d967dc80db6ee5066760bcb93b0ae6bf80d06093302dccd1bf2273bf8a1	Frank	frank@mail.ru	1680180634	\N
 29	Andre	0a0dcbce9a57c104c83ce4f6dac27a05b3588960429550cfdb423f37ad5db119	Andre	andre@mail.ru	1680198167	\N
 \.
@@ -997,14 +1054,14 @@ SELECT pg_catalog.setval('public.brand_id_seq', 31, true);
 -- Name: car_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.car_id_seq', 81, true);
+SELECT pg_catalog.setval('public.car_id_seq', 103, true);
 
 
 --
 -- Name: color_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.color_id_seq', 82, true);
+SELECT pg_catalog.setval('public.color_id_seq', 104, true);
 
 
 --
@@ -1039,14 +1096,14 @@ SELECT pg_catalog.setval('public.django_migrations_id_seq', 21, true);
 -- Name: favourite_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.favourite_id_seq', 108, true);
+SELECT pg_catalog.setval('public.favourite_id_seq', 128, true);
 
 
 --
 -- Name: session_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.session_id_seq', 64, true);
+SELECT pg_catalog.setval('public.session_id_seq', 71, true);
 
 
 --
