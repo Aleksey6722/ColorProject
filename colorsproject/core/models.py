@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 import time
 import uuid
 import hashlib
@@ -11,16 +12,46 @@ def key_generating():
     return key
 
 
-class User(models.Model):
-    login = models.CharField(unique=True, max_length=20, blank=False, verbose_name='Логин')
-    password = models.CharField(max_length=64, blank=False, verbose_name='Пароль')
-    name = models.CharField(max_length=64, blank=False, verbose_name='Имя')
-    email = models.EmailField(unique=True, max_length=64, blank=False, verbose_name='Email')
-    registration_date = models.BigIntegerField(default=int(time.time()))
-    last_signin_date = models.BigIntegerField(blank=True, null=True)
+class CustomUserManager(BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError('The Email field must be set')
 
-    class Meta:
-        db_table = 'user'
+        extra_fields.setdefault('is_active', True)
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        if password is not None:
+            user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must have is_superuser=True.')
+
+        return self.create_user(email, password, **extra_fields)
+
+
+class User(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(max_length=100, null=False, unique=True)
+    username = models.CharField(max_length=100, null=False)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
+    registration_date = models.DateField(auto_now_add=True)
+
+    objects = CustomUserManager()
+
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']
+
+    def __str__(self):
+        return f"{self.username}"
 
 
 class Session(models.Model):
@@ -55,6 +86,7 @@ class Car(models.Model):
     brand = models.ForeignKey('Brand', on_delete=models.SET_NULL, related_name='car', null=True)
     model = models.CharField(max_length=30)
     image = models.ImageField(upload_to='cars/', null=True)
+
     class Meta:
         db_table = 'car'
 
