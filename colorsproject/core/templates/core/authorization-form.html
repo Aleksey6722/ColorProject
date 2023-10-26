@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <div class="container">
-    <form id="form" name="form" class="form" action="{% domain + '/api/users/auth/token/login' %}" method="post">{% csrf_token %}
+    <form id="form" name="form" class="form" action="{% url 'api_sign_in' %}" method="post">{% csrf_token %}
         <h1 class="form__title">Вход</h1>
         {% for f in form %}
         <div class="form__group">

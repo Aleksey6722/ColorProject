@@ -1,56 +1,76 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import get_user_model
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.views import View
 from .forms import RegForm, AuthForm
-from .models import Session, Car, Favourite
+from .models import User, Session, Car, Favourite
 from .serializers import UserSerializer, ColorSerializer, CarIDSerializer, FavoriteSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import permissions, authentication
-from rest_framework.decorators import api_view, permission_classes
 from .colors import calculation
 import hashlib
 import time
 
 
-@permission_classes([permissions.AllowAny])
 def find_cars(request):
     return render(request, 'core/picker.html')
 
 
-@permission_classes([permissions.AllowAny])
 def index(request):
     return render(request, 'core/index.html')
 
 
-@permission_classes([permissions.AllowAny])
 def sign_in(request):
     form = AuthForm()
     return render(request, 'core/authorization-form.html', context={'form': form})
 
 
-@permission_classes([permissions.AllowAny])
 def sign_up(request):
     form = RegForm()
     return render(request, 'core/registration-form.html', context={'form': form})
 
 
-@permission_classes([permissions.IsAuthenticated])
 def sign_out(request):
     response = HttpResponseRedirect('/')
-    response.headers['Authorization'] = None
+    response.delete_cookie('sessionid')
     return response
 
 
-@permission_classes([permissions.AllowAny])
 def about(request):
     return render(request, 'core/about.html')
 
 
-class APIFindCars(APIView):
-    permission_classes = [permissions.AllowAny]
+class APISignUp(APIView):
+    def post(self, request):
+        form = RegForm(request.data)
+        if form.is_valid():
+            form.save()
+            user = User.objects.values('login', 'name', 'email', 'registration_date',
+                                       'last_signin_date').filter(email=form.cleaned_data['email']).first()
+            return Response({'user': UserSerializer(user).data})
 
+        return Response(form.errors.get_json_data(), status=400)
+
+
+class APISignIn(APIView):
+    def post(self, request):
+        login = request.data.get('login')
+        password = request.data.get('password')
+        hashed_password = hashlib.sha256(password.encode())
+        hexpassword = hashed_password.hexdigest()
+
+        user = User.objects.all().filter(login=login).first()
+        if user is None or user.password != hexpassword:
+            return Response({'error': [{'message': 'Неверный логин или пароль'}]}, status=403)
+
+        sess = Session(user=user)
+        sess.save()
+        user.last_signin_date = int(time.time())
+        user.save()
+        request.session['Authorization'] = sess.key
+        return Response({'id': user.pk, 'login': user.login, 'name': user.name, 'email': user.email})
+
+
+class APIFindCars(APIView):
     def get(self, request):
         serializer = ColorSerializer(data={'color': request.GET.get('c').upper(), 'n': request.GET.get('n')})
         serializer.is_valid(raise_exception=True)
@@ -91,11 +111,12 @@ class APIFindCars(APIView):
 
 
 class APIFavorite(APIView):
-    authentication_classes = [authentication.TokenAuthentication]
-    permission_classes = [permissions.IsAuthenticated]
-    User = get_user_model()
 
     def post(self, request):
+        key = request.session.get('Authorization')
+        sess = Session.objects.filter(key=key).first()
+        if not sess:
+            return Response({'error': 'Нужна авторизация'}, status=401)
         serializer = CarIDSerializer(data={'car_id': request.data['car_id']})
         serializer.is_valid(raise_exception=True)
         car_id = serializer.data['car_id']
@@ -109,6 +130,10 @@ class APIFavorite(APIView):
         return Response(FavoriteSerializer(fav).data)
 
     def delete(self, request):
+        key = request.session.get('Authorization')
+        sess = Session.objects.filter(key=key).first()
+        if not sess:
+            return Response({'error': 'Нужна авторизация'}, status=401)
         serializer = CarIDSerializer(data={'car_id': request.data['car_id']})
         serializer.is_valid(raise_exception=True)
         car_id = serializer.data['car_id']
@@ -123,10 +148,10 @@ class APIFavorite(APIView):
 
 class Fav(View):
     def get(self, request):
-        token = request.META.get('HTTP_AUTHORIZATION').split()[1]
-        User = get_user_model()
-        user = User.objects.get(auth_token=token)
-        if not user:
+        key = request.session.get('Authorization')
+        sess = Session.objects.filter(key=key).first()
+        if not sess:
             return render(request, 'core/fav_unauth.html')
+        user = User.objects.filter(pk=sess.user.pk).first()
         carset = Favourite.objects.filter(user=user)
         return render(request, 'core/favourite.html', context={'carset': carset, 'user': user})
